@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Venta de computadoras</title>
+</head>
+<body background="Images/background.jpg">
+	<?php include 'conectar.php' ?>
+	<form method="POST" action="menu.html" align="left">
+		<input type="image" src="Images/home.png" alt="Submit" style="width: 30px;"/>		
+	</form>
+	<div align="center" style="font-family: sans-serif; color: #fff;">
+		<h2>Ingresa tus datos personales</h2>
+		<br><br><br>
+		<table>
+			<tr>
+				<td>
+					<form method="POST" action="procesar.php">	
+						<p>Nombre: <br>
+							<input type="text" name="nombre" style="border-radius: 8px;"><br>
+						</p>
+						<p>Apellido Paterno: <br>
+							<input type="text" name="app" style="border-radius: 8px;"><br>
+						</p>
+						<p>Apellido Materno: <br>
+							<input type="text" name="apm" style="border-radius: 8px;"><br>
+						</p>
+						<p>No. de Telefono <br>
+							<input type="text" name="telefono" style="border-radius: 8px;" value=""><br>
+						</p>
+						<p>Correo: <br>
+							<input type="text" name="correo" style="border-radius: 8px;"><br><br>
+						</p>
+						<input type="submit" name="boton" value="Ingresar" style="color: #fff; background-color: green; border-radius: 6px">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<?php include 'desconectar.php' ?>
+</body>
+</html>
