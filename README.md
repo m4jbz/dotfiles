@@ -1,2 +1,2 @@
 # utilidades
-Cosas que me pueden servir
+Stuff that i probably need.
