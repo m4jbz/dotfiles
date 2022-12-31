@@ -163,7 +163,7 @@ keys.extend([
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["", "", "", "", "", "﨩", "", "","", "阮",]
+group_labels = ["", "", "", "", "", "阮", "", "","", "",]
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall","monadtall","monadtall",]
 
 for i in range(len(group_names)):
@@ -194,8 +194,8 @@ for i in groups:
 def init_layout_theme():
     return {"margin":3,
             "border_width":2,
-            "border_focus": "#0099A9",
-            "border_normal": "#00727E"
+            "border_focus": "#017581",
+            "border_normal": "#00606A"
             }
 
 layout_theme = init_layout_theme()
@@ -283,7 +283,7 @@ def init_widgets_list():
                         **powerline
                         ),
                widget.Clock(
-                        foreground = "fff",
+                        foreground = "000",
                         font="Cascadia Code",
                         background = colors[7],
                         fontsize = 12.8,

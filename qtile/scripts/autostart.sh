@@ -21,6 +21,7 @@ run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
 
 #starting utility applications at boot time
+run lxappearance
 run variety &
 run nm-applet &
 run pamac-tray &

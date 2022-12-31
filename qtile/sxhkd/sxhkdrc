@@ -78,14 +78,22 @@ super + r
 super + t
     tor-browser
 
-#Pavucontrol
+#Visual Studio Code
 super + v
-    pavucontrol
+    code
 
 #Terminal
 super + Return
     kitty
 
+#OBS
+super + i
+    obs
+
+#Notion
+super + u
+    notion-app
+    
 #Xkill
 super + Escape
     xkill
@@ -162,7 +170,7 @@ ctrl + alt + g
 
 #Firefox
 ctrl + alt + f
-     firefox
+     firefox-developer-edition
 
 #Nitrogen
 ctrl + alt + i
@@ -176,9 +184,9 @@ ctrl + alt + k
 ctrl + alt + l
     archlinux-logout
 
-#Pamac-manager
+#Virtal Box Manager
 ctrl + alt + p
-    pamac-manager
+    virt-manager
 
 #Xfce4-settings-manager
 ctrl + alt + m
