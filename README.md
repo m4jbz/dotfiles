@@ -1,6 +1,6 @@
 # Pasos para actulizar el repo:
 
-### *1.- Lo clonamos con "git clone https://github.com/m4jbz/dotfiles".
+### * 1.- Lo clonamos con "git clone https://github.com/m4jbz/dotfiles".
 
 ### 2.- Hacemos los cambios que tengamos que hacer (borar, editar, etc.).
 
