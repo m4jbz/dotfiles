@@ -8,6 +8,8 @@ Pasos para actulizar el repo:
 
 4.- "git commit -m 'update'" para hacer los cambios.
 
+5.- Luego usamos "git pull". (si nos aparece un error usar el primer comando que nos recomiendan usar)
+
 5.- Como siguiente comando sigue "git push origin" para hacer un push en la rama que especificamos.
 
 
