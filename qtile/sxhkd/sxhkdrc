@@ -58,9 +58,13 @@ super + F12
 # SUPER + ... KEYS
 #################################################################
 
+#Krita
+super + k
+    krita
+
 #Browser
 super + w
-    brave
+    brave-browser-nightly
 
 #Appearance
 super + c
@@ -84,7 +88,7 @@ super + v
 
 #Terminal
 super + Return
-    kitty
+    alacritty
 
 #OBS
 super + i
@@ -100,7 +104,7 @@ super + Escape
 
 #Sublime Text
 super + s
-    subl
+    subl4
 
 #Spotify
 super + p
@@ -110,13 +114,17 @@ super + p
 super + o
     libreoffice
 
+#Discord
+super + d
+    discord
+
 #################################################################
 # SUPER + SHIFT KEYS
 #################################################################
 
 #File-Manager
 super + shift + Return
-	thunar
+	nemo
 
 #Keyboard dependent
 #File-Manager
@@ -170,7 +178,7 @@ ctrl + alt + g
 
 #Firefox
 ctrl + alt + f
-     firefox-developer-edition
+     firefox
 
 #Nitrogen
 ctrl + alt + i

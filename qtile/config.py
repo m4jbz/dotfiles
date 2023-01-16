@@ -38,7 +38,7 @@ def window_to_next_group(qtile):
 keys = [
 
 # Most of our keybindings are in sxhkd file - except these
-
+    
 # SUPER + FUNCTION KEYS
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -49,6 +49,7 @@ keys = [
 
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod, "shift"], "x", lazy.shutdown()),
 
 
 # QTILE LAYOUT KEYS
@@ -163,7 +164,7 @@ keys.extend([
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["", "", "", "", "", "阮", "", "","", "",]
+group_labels = ["", "", "", "", "", "", "", "","", "",]
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall","monadtall","monadtall",]
 
 for i in range(len(group_names)):
@@ -192,10 +193,10 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":3,
+    return {"margin":2,
             "border_width":2,
-            "border_focus": "#017581",
-            "border_normal": "#00606A"
+            "border_focus": "#212121",
+            "border_normal": "#141414"
             }
 
 layout_theme = init_layout_theme()
@@ -223,7 +224,7 @@ def init_colors():
           ["#98be65", "#98be65"],
           ["#da8548", "#da8548"],
           ["#51afef", "#51afef"],
-          ["#c678dd", "#c678dd"],
+          ["#D133FF", "#D133FF"],
           ["#46d9ff", "#46d9ff"],
           ["#a9a1e1", "#a9a1e1"]]
 
@@ -267,41 +268,31 @@ def init_widgets_list():
                         padding_x = 12,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = colors[7],
-                        inactive = "3877D6",
+                        active = "AA52E5",
+                        inactive = "4D5768",
                         rounded = False,
                         highlight_color = "00AFC2",
                         highlight_method = "text",
-                        this_current_screen_border = "fff",
+                        this_current_screen_border = "CDCDCD",
                         foreground = colors[2],
-                        background = colors[1],
+                        background = "1A1E23",
                         ),
                widget.WindowName(font="Noto Sans",
                         fontsize = 0,
                         foreground = colors[5],
-                        background = colors[1],
+                        background = "1A1E23",
                         **powerline
                         ),
                widget.Clock(
                         foreground = "000",
                         font="Cascadia Code",
-                        background = colors[7],
+                        background = "29F0E7",
                         fontsize = 12.8,
                         format='%Y-%d-%m %a %I:%M %p',
                         **powerline
                         ),
-               widget.Memory(
-                       foreground = "000",
-                       fontsize = 12.8,
-                       font = "Cascadia Code",
-                       background = colors[8],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                       fmt = 'RAM: {}',
-                       padding = 6,
-                       **powerline
-                       ),
                widget.Systray(
-                        background="00AFC2",
+                        background="BB6CEF",
                         icon_size= 16,
                         padding = 14,
                         ),
@@ -343,49 +334,6 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []
-
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
-# BEGIN
-
-#########################################################
-################ assgin apps to groups ##################
-#########################################################
-# @hook.subscribe.client_new
-# def assign_app_group(client):
-#     d = {}
-#     #####################################################################################
-#     ### Use xprop fo find  the value of WM_CLASS(STRING) -> First field is sufficient ###
-#     #####################################################################################
-#     d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser",
-#               "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", ]
-#     d[group_names[1]] = [ "Atom", "Subl", "Geany", "Brackets", "Code-oss", "Code", "TelegramDesktop", "Discord",
-#                "atom", "subl", "geany", "brackets", "code-oss", "code", "telegramDesktop", "discord", ]
-#     d[group_names[2]] = ["Inkscape", "Nomacs", "Ristretto", "Nitrogen", "Feh",
-#               "inkscape", "nomacs", "ristretto", "nitrogen", "feh", ]
-#     d[group_names[3]] = ["Gimp", "gimp" ]
-#     d[group_names[4]] = ["Meld", "meld", "org.gnome.meld" "org.gnome.Meld" ]
-#     d[group_names[5]] = ["Vlc","vlc", "Mpv", "mpv" ]
-#     d[group_names[6]] = ["VirtualBox Manager", "VirtualBox Machine", "Vmplayer",
-#               "virtualbox manager", "virtualbox machine", "vmplayer", ]
-#     d[group_names[7]] = ["Thunar", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt",
-#               "thunar", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt", ]
-#     d[group_names[8]] = ["Evolution", "Geary", "Mail", "Thunderbird",
-#               "evolution", "geary", "mail", "thunderbird" ]
-#     d[group_names[9]] = ["Spotify", "Pragha", "Clementine", "Deadbeef", "Audacious",
-#               "spotify", "pragha", "clementine", "deadbeef", "audacious" ]
-#     ######################################################################################
-#
-# wm_class = client.window.get_wm_class()[0]
-#
-#     for i in range(len(d)):
-#         if wm_class in list(d.values())[i]:
-#             group = list(d.keys())[i]
-#             client.togroup(group)
-#             client.group.cmd_toscreen(toggle=False)
-
-# END
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
-
 
 
 main = None
