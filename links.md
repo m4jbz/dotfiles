@@ -13,3 +13,6 @@ https://docs.qtile.org/en/latest/manual/ref/widgets.html#memory
 ## La config de qtile del Derek
 https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/qtile/config.py
 
+## Mover varios archivos de un mismo tipo (ej.: jpg, rar, zip, etc.)
+#### "cp *.jpg* *.png* directory"
+
