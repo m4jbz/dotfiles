@@ -16,3 +16,7 @@ https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/qtile/config.py
 ## Mover varios archivos de un mismo tipo (ej.: jpg, rar, zip, etc.)
 #### "cp **.jpg* **.png* /path/"
 
+## Solución a posibles warnings de git
+https://stackoverflow.com/questions/62653114/how-can-i-deal-with-this-git-warning-pulling-without-specifying-how-to-reconci
+https://stackoverflow.com/questions/13106179/fatal-not-possible-to-fast-forward-aborting
+
