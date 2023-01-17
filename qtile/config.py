@@ -8,7 +8,7 @@ from libqtile import qtile
 from libqtile import layout, bar, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.command import lazy
-from libqtile.widget import Spacer
+from libqtile.widget import Spacer, base
 
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
@@ -261,14 +261,14 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
                widget.GroupBox(font="FontAwesome",
-                        fontsize = 23,
+                        fontsize = 24,
                         margin_y = 2,
                         margin_x = 0,
                         padding_y = 0,
-                        padding_x = 12,
+                        padding_x = 14,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = "AA52E5",
+                        active = "5395FC",
                         inactive = "4D5768",
                         rounded = False,
                         highlight_color = "00AFC2",
@@ -291,8 +291,28 @@ def init_widgets_list():
                         format='%Y-%d-%m %a %I:%M %p',
                         **powerline
                         ),
+               widget.Memory(
+                       foreground = "000",
+                       background = "E868BA",
+                       font = "Cascadia Code",
+                       fontsize = 12.8,
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                       fmt = 'RAM: {}',
+                       padding = 5,
+                       **powerline
+                       ),
+               widget.CPU(
+                       foreground = "000",
+                       background = "73A9FF",
+                       font = "Cascadia Code",
+                       fontsize = 12.8,
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                       fmt = '{}',
+                       padding = 5,
+                       **powerline
+                       ),
                widget.Systray(
-                        background="BB6CEF",
+                        background="4D5768",
                         icon_size= 16,
                         padding = 14,
                         ),
