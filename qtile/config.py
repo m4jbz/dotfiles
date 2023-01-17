@@ -275,12 +275,12 @@ def init_widgets_list():
                         highlight_method = "text",
                         this_current_screen_border = "CDCDCD",
                         foreground = colors[2],
-                        background = "1A1E23",
+                        background = "01233f",
                         ),
                widget.WindowName(font="Noto Sans",
                         fontsize = 0,
                         foreground = colors[5],
-                        background = "1A1E23",
+                        background = "01233f",
                         **powerline
                         ),
                widget.Clock(

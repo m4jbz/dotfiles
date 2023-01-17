@@ -14,7 +14,7 @@ if [ $keybLayout = "be" ]; then
 fi
 
 #Some ways to set your wallpaper besides variety or nitrogen
-feh --bg-fill $HOME/Downloads/008.jpg &
+feh --bg-fill $HOME/Downloads/017.jpg &
 
 #start sxhkd to replace Qtile native key-bindings
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
