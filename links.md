@@ -14,5 +14,5 @@ https://docs.qtile.org/en/latest/manual/ref/widgets.html#memory
 https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/qtile/config.py
 
 ## Mover varios archivos de un mismo tipo (ej.: jpg, rar, zip, etc.)
-#### "cp *.jpg* *.png* /path/"
+#### "cp **.jpg* **.png* /path/"
 
