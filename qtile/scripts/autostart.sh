@@ -13,18 +13,16 @@ if [ $keybLayout = "be" ]; then
   cp $HOME/.config/qtile/config-azerty.py $HOME/.config/qtile/config.py
 fi
 
-#Some ways to set your wallpaper besides variety or nitrogen
+##Wallaper
 feh --bg-fill $HOME/Downloads/017.jpg &
 
-#start sxhkd to replace Qtile native key-bindings
+#Los key bindings
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
 
 #starting utility applications at boot time
 run lxappearance
-run variety &
 run nm-applet &
-run pamac-tray &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &
@@ -34,14 +32,3 @@ picom --config $HOME/.config/qtile/scripts/picom.conf &
 
 #starting user applications at boot time
 run volumeicon &
-#run discord &
-#nitrogen --restore &
-#run caffeine -a &
-#run vivaldi-stable &
-#run firefox &
-#run thunar &
-#run dropbox &
-#run insync start &
-#run spotify &
-#run atom &
-#run telegram-desktop &

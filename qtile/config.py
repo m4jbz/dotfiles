@@ -1,4 +1,6 @@
-#--Config--#
+####majb's config####
+
+
 import os
 import re
 import socket
@@ -12,11 +14,7 @@ from libqtile.widget import Spacer, base
 
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
-from qtile_extras.widget.decorations import BorderDecoration
-from qtile_extras.widget.decorations import RectDecoration
-#import arcobattery
 
-#mod4 or mod = super key
 mod = "mod4"
 mod1 = "alt"
 mod2 = "control"
@@ -34,7 +32,7 @@ def window_to_next_group(qtile):
     if qtile.currentWindow is not None:
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
-
+        
 keys = [
 
 # Most of our keybindings are in sxhkd file - except these
@@ -43,7 +41,6 @@ keys = [
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
-
 
 # SUPER + SHIFT KEYS
 
@@ -61,30 +58,13 @@ keys = [
     Key([mod], "Down", lazy.layout.down()),
     Key([mod], "Left", lazy.layout.left()),
     Key([mod], "Right", lazy.layout.right()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "h", lazy.layout.left()),
-    Key([mod], "l", lazy.layout.right()),
-
 
 # RESIZE UP, DOWN, LEFT, RIGHT
-    Key([mod, "control"], "l",
-        lazy.layout.grow_right(),
-        lazy.layout.grow(),
-        lazy.layout.increase_ratio(),
-        lazy.layout.delete(),
-        ),
     Key([mod, "control"], "Right",
         lazy.layout.grow_right(),
         lazy.layout.grow(),
         lazy.layout.increase_ratio(),
         lazy.layout.delete(),
-        ),
-    Key([mod, "control"], "h",
-        lazy.layout.grow_left(),
-        lazy.layout.shrink(),
-        lazy.layout.decrease_ratio(),
-        lazy.layout.add(),
         ),
     Key([mod, "control"], "Left",
         lazy.layout.grow_left(),
@@ -92,20 +72,10 @@ keys = [
         lazy.layout.decrease_ratio(),
         lazy.layout.add(),
         ),
-    Key([mod, "control"], "k",
-        lazy.layout.grow_up(),
-        lazy.layout.grow(),
-        lazy.layout.decrease_nmaster(),
-        ),
     Key([mod, "control"], "Up",
         lazy.layout.grow_up(),
         lazy.layout.grow(),
         lazy.layout.decrease_nmaster(),
-        ),
-    Key([mod, "control"], "j",
-        lazy.layout.grow_down(),
-        lazy.layout.shrink(),
-        lazy.layout.increase_nmaster(),
         ),
     Key([mod, "control"], "Down",
         lazy.layout.grow_down(),
@@ -117,23 +87,11 @@ keys = [
 # FLIP LAYOUT FOR MONADTALL/MONADWIDE
     Key([mod, "shift"], "f", lazy.layout.flip()),
 
-# FLIP LAYOUT FOR BSP
-    Key([mod, "mod1"], "k", lazy.layout.flip_up()),
-    Key([mod, "mod1"], "j", lazy.layout.flip_down()),
-    Key([mod, "mod1"], "l", lazy.layout.flip_right()),
-    Key([mod, "mod1"], "h", lazy.layout.flip_left()),
-
 # MOVE WINDOWS UP OR DOWN BSP LAYOUT
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
-
-# MOVE WINDOWS UP OR DOWN MONADTALL/MONADWIDE LAYOUT
-    Key([mod, "shift"], "Up", lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "Down", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "Left", lazy.layout.swap_left()),
-    Key([mod, "shift"], "Right", lazy.layout.swap_right()),
 
 # TOGGLE FLOATING LAYOUT
     Key([mod, "shift"], "space", lazy.window.toggle_floating()),
@@ -181,12 +139,7 @@ for i in groups:
 #CHANGE WORKSPACES
         Key([mod], i.name, lazy.group[i.name].toscreen()),
         Key([mod], "Tab", lazy.screen.next_group()),
-        Key([mod, "shift" ], "Tab", lazy.screen.prev_group()),
-        Key(["mod1"], "Tab", lazy.screen.next_group()),
-        Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
-
-# MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
-        #Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+        Key(["mod1"], "Tab", lazy.screen.prev_group()),
 # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED WINDOW TO WORKSPACE
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name) , lazy.group[i.name].toscreen()),
     ])
@@ -195,17 +148,15 @@ for i in groups:
 def init_layout_theme():
     return {"margin":2,
             "border_width":2,
-            "border_focus": "#212121",
-            "border_normal": "#141414"
+            "border_focus": "#4CA097",
+            "border_normal": "#2F635E"
             }
 
 layout_theme = init_layout_theme()
 
 
 layouts = [
-    #layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
     layout.MonadTall(**layout_theme),
-    #layout.MonadWide(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
     layout.MonadWide(**layout_theme),
     layout.Matrix(**layout_theme),
     layout.Bsp(**layout_theme),
@@ -215,7 +166,6 @@ layouts = [
 ]
 
 # COLORS FOR THE BAR
-#Theme name : ArcoLinux Default
 def init_colors():
     return [["#282c34", "#282c34"],
           ["#1c1f24", "#1c1f24"],
@@ -236,14 +186,6 @@ powerline = {
         PowerLineDecoration(
             path='arrow_right'
         )
-    ]
-}
-
-powerline2 = {
-    "decorations": [
-        PowerLineDecoration(
-            path='arrow_left'
-            )
     ]
 }
 
@@ -326,21 +268,14 @@ def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1
 
-def init_widgets_screen2():
-    widgets_screen2 = init_widgets_list()
-    return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
-widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
     return [Screen(
         top=bar.Bar(
-            widgets=init_widgets_screen1(), size=16, opacity=1)),
-            Screen(
-        top=bar.Bar(
-            widgets=init_widgets_screen2(), size=16, opacity=1))]
+            widgets=init_widgets_screen1(), size=16, opacity=1))]
 screens = init_screens()
 
 
