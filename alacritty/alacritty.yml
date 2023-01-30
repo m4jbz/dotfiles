@@ -1,93 +1,58 @@
+window_opacity: 1.0
+
+# Colors (Cobalt 2)
+colors:
+  cursor:
+    text: '#fefff2'
+    cursor: '#D1D1D1'
+
+  selection:
+    text: '#b5b5b5'
+    background: '#18354f'
+
+  primary:
+    background: '#01070C'
+    foreground: '#ffffff'
+
+  normal:
+    black:   '#000000'
+    red:     '#ff0000'
+    green:   '#38de21'
+    yellow:  '#ffe50a'
+    blue:    '#1460d2'
+    magenta: '#ff005d'
+    cyan:    '#29F0E7'
+    white:   '#bbbbbb'
+
+  bright:
+    black:   '#555555'
+    red:     '#f40e17'
+    green:   '#3bd01d'
+    yellow:  '#edc809'
+    blue:    '#5555ff'
+    magenta: '#ff55ff'
+    cyan:    '#6ae3fa'
+    white:   '#ffffff'
+    
+font:
+
+  bold:
+    family: Cascadia Code
+
+  italic:
+    family: Cascadia Code 
+
+  normal:
+      family: Cascadia Code
+
+  size: 13
+
 window:
   padding:
     x: 2
-    y: 2
-  class:
-    instance: Alacritty
-    general: Alacritty
-  opacity: 1
 
-scrolling:
-  history: 10000
-  multiplier: 3
-
-
-font:
-  normal:
-    family: Cascadia Code
-    style:  Medium
-  bold:
-    family: Cascadia Code
-    style:  Bold
-  italic:
-    family: Cascadia Code
-    style:  MediumItalic
-  bold_italic:
-    family: Cascadia Code
-    style: BoldItalic
-  size: 11
-draw_bold_text_with_bright_colors: true
-
-draw_bold_text_with_bright_colors: true
-
-
-################################################################################
-
-
-# KDE Breeze (Ported from Konsole)
-colors:
-  # Default colors
-  primary:
-    background: '0x232627'
-    foreground: '0xfcfcfc'
-
-    dim_foreground: '0xeff0f1'
-    bright_foreground: '0xffffff'
-    dim_background: '0x31363b'
-    bright_background: '0x000000'
-
-  # Normal colors
-  normal:
-    black: '0x232627'
-    red: '0xed1515'
-    green: '0x11d116'
-    yellow: '0xf67400'
-    blue: '0x1d99f3'
-    magenta: '0x9b59b6'
-    cyan: '0x1abc9c'
-    white: '0xfcfcfc'
-
-  # Bright colors
-  bright:
-    black: '0x7f8c8d'
-    red: '0xc0392b'
-    green: '0x1cdc9a'
-    yellow: '0xfdbc4b'
-    blue: '0x3daee9'
-    magenta: '0x8e44ad'
-    cyan: '0x16a085'
-    white: '0xffffff'
-
-  # Dim colors
-  dim:
-    black: '0x31363b'
-    red: '0x783228'
-    green: '0x17a262'
-    yellow: '0xb65619'
-    blue: '0x1b668f'
-    magenta: '0x614a73'
-    cyan: '0x186c60'
-
-
-
-############################################################################3
-
-
-
-save_to_clipboard: false
-
-shell:
-  program: /usr/bin/zsh
-
-key_bindings:
-  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
+cursor: 
+  style:
+    shape: Beam
+  vi_mode_style:
+    shape: Block

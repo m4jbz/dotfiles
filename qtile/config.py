@@ -122,7 +122,7 @@ keys.extend([
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["", "", "", "", "", "", "", "","", "",]
+group_labels = ["", "", "", "", "", "󰓇", "", "","", "",]
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall","monadtall","monadtall",]
 
 for i in range(len(group_names)):
@@ -146,10 +146,10 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":2,
-            "border_width":2,
-            "border_focus": "#4CA097",
-            "border_normal": "#2F635E"
+    return {"margin":4,
+            "border_width":1,
+            "border_focus": "#0f101a",
+            "border_normal": "#37383b"
             }
 
 layout_theme = init_layout_theme()
@@ -235,26 +235,24 @@ def init_widgets_list():
                         ),
                widget.Memory(
                        foreground = "000",
-                       background = "E868BA",
+                       background = "EA57AA",
                        font = "Cascadia Code",
                        fontsize = 12.8,
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                        fmt = 'RAM: {}',
                        padding = 5,
                        **powerline
                        ),
                widget.CPU(
                        foreground = "000",
-                       background = "73A9FF",
+                       background = "#2DB0EA",
                        font = "Cascadia Code",
                        fontsize = 12.8,
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                        fmt = '{}',
                        padding = 5,
                        **powerline
                        ),
                widget.Systray(
-                        background="4D5768",
+                        background="#1C1E25",
                         icon_size= 16,
                         padding = 14,
                         ),

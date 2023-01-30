@@ -14,13 +14,17 @@ super + F12
 # SUPER + ... KEYS
 #################################################################
 
+#Logout
+super + x
+    archlinux-logout
+
 #Krita
 super + k
     krita
 
 #Browser
 super + w
-    brave-browser-nightly
+    brave
 
 #Appearance
 super + c
@@ -52,11 +56,11 @@ super + Escape
 
 #Sublime Text
 super + s
-    subl4
+    subl
 
 #Spotify
 super + p
-    spotify
+    spotify-launcher
 
 #Discord
 super + d
@@ -64,7 +68,7 @@ super + d
 
 #LibreOffice
 super + o
-    libreoffice
+    onlyoffice-desktopeditors
 
 #################################################################
 # SUPER + SHIFT KEYS
@@ -72,11 +76,15 @@ super + o
 
 #File-Manager
 super + shift + Return
-	nemo
+	thunar
 
 #reload sxhkd:
 super + shift + s
 	pkill -USR1 -x sxhkd
+
+#xfce4-settings-manager
+ctrl + alt + m
+    xfce4-settings-manager
 
 #################################################################
 #     SCREENSHOTS
@@ -124,11 +132,11 @@ XF86AudioStop
 
 #Brightness up
 XF86MonBrightnessUp
-    xbacklight -inc 10
+    brightnessctl set +10%
 
 #Brightness down
 XF86MonBrightnessDown
-    xbacklight -dec 10
+    brightnessctl set 10%-
 
 #Picom Toggle
 ctrl + alt + o
