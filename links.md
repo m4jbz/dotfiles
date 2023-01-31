@@ -20,3 +20,6 @@ https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/qtile/config.py
 https://stackoverflow.com/questions/62653114/how-can-i-deal-with-this-git-warning-pulling-without-specifying-how-to-reconci
 https://stackoverflow.com/questions/13106179/fatal-not-possible-to-fast-forward-aborting
 
+## Montar la particion de Windows después de la instalacion de Linux
+https://www.makeuseof.com/mount-ntfs-windows-drives-in-linux/
+
