@@ -14,7 +14,7 @@ if [ $keybLayout = "be" ]; then
 fi
 
 ##Wallaper
-feh --bg-fill $HOME/Downloads/002.jpg &
+feh --bg-fill $HOME/Downloads/004.jpg &
 
 #Los key bindings
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &

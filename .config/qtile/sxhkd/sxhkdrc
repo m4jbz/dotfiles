@@ -24,7 +24,7 @@ super + k
 
 #Browser
 super + w
-    brave
+    firefox
 
 #Appearance
 super + c
@@ -45,6 +45,10 @@ super + v
 #Terminal
 super + Return
     alacritty
+
+#Terminal#2
+super + shift + Return
+    kitty
 
 #OBS
 super + i

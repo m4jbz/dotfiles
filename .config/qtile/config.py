@@ -122,7 +122,7 @@ keys.extend([
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["", "", "", "", "", "󰓇", "", "","", "",]
+group_labels = ["", "", "", "", "", "", "", "","", "󰹻",]
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall","monadtall","monadtall",]
 
 for i in range(len(group_names)):
@@ -146,7 +146,7 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":4,
+    return {"margin":2,
             "border_width":1,
             "border_focus": "#0f101a",
             "border_normal": "#37383b"
@@ -169,7 +169,7 @@ layouts = [
 def init_colors():
     return [["#282c34", "#282c34"],
           ["#1c1f24", "#1c1f24"],
-          ["#dfdfdf", "#dfdfdf"],
+          ["#ececec", "#ececec"],
           ["#ff6c6b", "#ff6c6b"],
           ["#98be65", "#98be65"],
           ["#da8548", "#da8548"],
@@ -202,19 +202,21 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-               widget.GroupBox(font="FontAwesome",
-                        fontsize = 24,
-                        margin_y = 2,
+               widget.GroupBox(
+                        font="UbuntuMono Nerd Font",
+                        fontsize = 16,
+                        margin_y = 3,
                         margin_x = 0,
                         padding_y = 0,
-                        padding_x = 14,
-                        borderwidth = 0,
-                        disable_drag = True,
-                        active = "5395FC",
+                        padding_x = 16,
+                        borderwidth = 1,
+                        active = "7d3bc2",
                         inactive = "4D5768",
                         rounded = False,
                         highlight_color = "00AFC2",
-                        highlight_method = "text",
+                        highlight_method = "block",
+                        urgent_alert_method='block',
+                        urgent_border=colors[1],
                         this_current_screen_border = "CDCDCD",
                         foreground = colors[2],
                         background = "01233f",
@@ -226,16 +228,16 @@ def init_widgets_list():
                         **powerline
                         ),
                widget.Clock(
-                        foreground = "000",
+                        foreground = "c0c0c0",
                         font="Cascadia Code",
-                        background = "29F0E7",
+                        background = "#7d3bc2",
                         fontsize = 12.8,
                         format='%Y-%d-%m %a %I:%M %p',
                         **powerline
                         ),
                widget.Memory(
-                       foreground = "000",
-                       background = "EA57AA",
+                       foreground = "c0c0c0",
+                       background = "#570f80",
                        font = "Cascadia Code",
                        fontsize = 12.8,
                        fmt = 'RAM: {}',
@@ -243,8 +245,8 @@ def init_widgets_list():
                        **powerline
                        ),
                widget.CPU(
-                       foreground = "000",
-                       background = "#2DB0EA",
+                       foreground = "c0c0c0",
+                       background = "#380768",
                        font = "Cascadia Code",
                        fontsize = 12.8,
                        fmt = '{}',
@@ -252,7 +254,7 @@ def init_widgets_list():
                        **powerline
                        ),
                widget.Systray(
-                        background="#1C1E25",
+                        background="#0f0423",
                         icon_size= 16,
                         padding = 14,
                         ),
