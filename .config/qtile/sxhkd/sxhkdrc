@@ -10,21 +10,43 @@
 super + F12
     rofi -show run
 
+
+#Keyboards
+super + shift + k
+	setxkbmap latam
+
+super + shift + l
+	setxkbmap us
+
+
+
+#Bookmarks
+super + F11
+	xdotool type $(grep -v '^#' ~/.local/share/bookmarks/snippets | dmenu -i -l 50 | cut -d' ' -f1)
+
 #################################################################
 # SUPER + ... KEYS
 #################################################################
+
+#MuPDF
+super + p  
+	mupdf Documents/LaTeX/algebra.pdf
 
 #Logout
 super + x
     archlinux-logout
 
-#Krita
-super + k
-    krita
+#Ranger (Explorador de archivos en terminal)
+super + y
+    alacritty -e ranger
 
 #Browser
 super + w
     firefox
+
+#Browser (qutebrowser)
+super + e
+    qutebrowser
 
 #Appearance
 super + c
@@ -36,19 +58,19 @@ super + r
 
 #Tor
 super + t
-    tor-browser
+    torbrowser-launcher
 
 #Visual Studio Code
 super + v
-    code
+    vscodium
 
 #Terminal
 super + Return
     alacritty
 
 #Terminal#2
-super + shift + Return
-    kitty
+#super + shift + Return
+#   kitty
 
 #OBS
 super + i
@@ -62,13 +84,6 @@ super + Escape
 super + s
     subl
 
-#Spotify
-super + p
-    spotify-launcher
-
-#Discord
-super + d
-    discord
 
 #LibreOffice
 super + o
@@ -80,7 +95,12 @@ super + o
 
 #File-Manager
 super + shift + Return
-	thunar
+	nemo
+
+#Tor database
+super + shift + t
+	cd Downloads && ./KeePassXC-2.7.5-x86_64.AppImage
+
 
 #reload sxhkd:
 super + shift + s

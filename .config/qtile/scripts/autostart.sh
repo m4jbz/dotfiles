@@ -14,17 +14,17 @@ if [ $keybLayout = "be" ]; then
 fi
 
 ##Wallaper
-feh --bg-fill $HOME/Downloads/004.jpg &
+feh --bg-fill Pictures/017.jpg
 
 #Los key bindings
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
-
 
 #starting utility applications at boot time
 #run lxappearance
 run nm-applet &
 run volumeicon &
 run cbatticon &
+run blueman-applet &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &

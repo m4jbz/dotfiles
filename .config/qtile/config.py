@@ -1,6 +1,6 @@
 ####majb's config####
 
-
+import psutil
 import os
 import re
 import socket
@@ -16,9 +16,28 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
 
 mod = "mod4"
-mod1 = "alt"
-mod2 = "control"
 home = os.path.expanduser('~')
+
+@hook.subscribe.client_new
+def _swallow(window):
+    pid = window.get_net_wm_pid()
+    ppid = psutil.Process(pid).ppid()
+    cpids = {c.window.get_net_wm_pid(): wid for wid, c in window.qtile.windows_map.items()}
+    for i in range(5):
+        if not ppid:
+            return
+        if ppid in cpids:
+            parent = window.qtile.windows_map.get(cpids[ppid])
+            parent.minimized = True
+            window.parent = parent
+            return
+        ppid = psutil.Process(ppid).ppid()
+
+@hook.subscribe.client_killed
+def _unswallow(window):
+    if hasattr(window, 'parent'):
+        window.parent.minimized = False
+
 
 
 @lazy.function
@@ -34,9 +53,6 @@ def window_to_next_group(qtile):
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
         
 keys = [
-
-# Most of our keybindings are in sxhkd file - except these
-    
 # SUPER + FUNCTION KEYS
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -47,7 +63,6 @@ keys = [
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "x", lazy.shutdown()),
-
 
 # QTILE LAYOUT KEYS
     Key([mod], "n", lazy.layout.normalize()),
@@ -83,7 +98,6 @@ keys = [
         lazy.layout.increase_nmaster(),
         ),
 
-
 # FLIP LAYOUT FOR MONADTALL/MONADWIDE
     Key([mod, "shift"], "f", lazy.layout.flip()),
 
@@ -92,9 +106,6 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
-
-# TOGGLE FLOATING LAYOUT
-    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
 
     ]
 
@@ -114,15 +125,11 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
         if switch_screen == True:
             qtile.cmd_to_screen(i + 1)
 
-keys.extend([
-    # MOVE WINDOW TO NEXT SCREEN
-    Key([mod,"shift"], "Right", lazy.function(window_to_next_screen, switch_screen=True)),
-    Key([mod,"shift"], "Left", lazy.function(window_to_previous_screen, switch_screen=True)),
-])
+## GROUPS
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["", "", "", "", "", "", "", "","", "󰹻",]
+group_labels = ["1", "2", "3", "4", "5", "6", "7", "8","9", "0",]
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall","monadtall","monadtall",]
 
 for i in range(len(group_names)):
@@ -146,9 +153,9 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":2,
-            "border_width":1,
-            "border_focus": "#0f101a",
+    return {"margin":4,
+            "border_width":0,
+            "border_focus": "#cc241d",
             "border_normal": "#37383b"
             }
 
@@ -158,10 +165,7 @@ layout_theme = init_layout_theme()
 layouts = [
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
-    layout.Matrix(**layout_theme),
-    layout.Bsp(**layout_theme),
     layout.Floating(**layout_theme),
-    layout.RatioTile(**layout_theme),
     layout.Max(**layout_theme)
 ]
 
@@ -203,58 +207,54 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
                widget.GroupBox(
-                        font="UbuntuMono Nerd Font",
+                        font="Noto Sans",
                         fontsize = 16,
                         margin_y = 3,
                         margin_x = 0,
                         padding_y = 0,
-                        padding_x = 16,
+                        padding_x = 10,
                         borderwidth = 1,
-                        active = "7d3bc2",
+                        active = "#ba4100",
                         inactive = "4D5768",
                         rounded = False,
                         highlight_color = "00AFC2",
                         highlight_method = "block",
                         urgent_alert_method='block',
                         urgent_border=colors[1],
-                        this_current_screen_border = "CDCDCD",
+                        this_current_screen_border = "#919191",
                         foreground = colors[2],
-                        background = "01233f",
+                        background = "#101010",
                         ),
                widget.WindowName(font="Noto Sans",
                         fontsize = 0,
                         foreground = colors[5],
-                        background = "01233f",
-                        **powerline
+                        background = "#101010",
                         ),
                widget.Clock(
-                        foreground = "c0c0c0",
-                        font="Cascadia Code",
-                        background = "#7d3bc2",
-                        fontsize = 12.8,
-                        format='%Y-%d-%m %a %I:%M %p',
-                        **powerline
+                       foreground = colors[2],
+                        font="UbuntuMono Nerd Font",
+                        background = "#101010",
+                        fontsize = 16,
+                        format='%d-%m %a %I:%M %p' + ' | ',
                         ),
                widget.Memory(
-                       foreground = "c0c0c0",
-                       background = "#570f80",
-                       font = "Cascadia Code",
-                       fontsize = 12.8,
-                       fmt = 'RAM: {}',
+                       foreground = colors[2],
+                       background = "#101010",
+                       font="UbuntuMono Nerd Font",
+                       fontsize = 16,
+                       fmt = 'RAM: {}' + ' | ',
                        padding = 5,
-                       **powerline
                        ),
                widget.CPU(
-                       foreground = "c0c0c0",
-                       background = "#380768",
-                       font = "Cascadia Code",
-                       fontsize = 12.8,
+                       foreground = colors[2],
+                       background = "#101010",
+                       font = "UbuntuMono Nerd Font",
+                       fontsize = 16,
                        fmt = '{}',
                        padding = 5,
-                       **powerline
                        ),
                widget.Systray(
-                        background="#0f0423",
+                        background="#101010",
                         icon_size= 16,
                         padding = 14,
                         ),
@@ -275,7 +275,7 @@ widgets_screen1 = init_widgets_screen1()
 def init_screens():
     return [Screen(
         top=bar.Bar(
-            widgets=init_widgets_screen1(), size=16, opacity=1))]
+            widgets=init_widgets_screen1(), size=18, opacity=1))]
 screens = init_screens()
 
 
