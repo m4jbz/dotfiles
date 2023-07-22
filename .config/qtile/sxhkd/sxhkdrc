@@ -80,10 +80,6 @@ super + i
 super + Escape
     xkill
 
-#Sublime Text
-super + s
-    subl
-
 
 #LibreOffice
 super + o
@@ -95,14 +91,10 @@ super + o
 
 #File-Manager
 super + shift + Return
-	nemo
-
-#Tor database
-super + shift + t
-	cd Downloads && ./KeePassXC-2.7.5-x86_64.AppImage
+	pcmanfm
 
 
-#reload sxhkd:
+#Reload sxhkd:
 super + shift + s
 	pkill -USR1 -x sxhkd
 
