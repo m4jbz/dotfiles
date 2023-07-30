@@ -1,6 +1,4 @@
 ####majb's config####
-
-import psutil
 import os
 import re
 import socket
@@ -9,29 +7,13 @@ from typing import List  # noqa: F401
 from libqtile import qtile
 from libqtile import layout, bar, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
-from libqtile.command import lazy
-from libqtile.widget import Spacer, base
+from libqtile.lazy import lazy
+from libqtile.widget import base
 
-from qtile_extras import widget
-from qtile_extras.widget.decorations import PowerLineDecoration
 
 mod = "mod4"
 home = os.path.expanduser('~')
 
-@hook.subscribe.client_new
-def _swallow(window):
-    pid = window.get_net_wm_pid()
-    ppid = psutil.Process(pid).ppid()
-    cpids = {c.window.get_net_wm_pid(): wid for wid, c in window.qtile.windows_map.items()}
-    for i in range(5):
-        if not ppid:
-            return
-        if ppid in cpids:
-            parent = window.qtile.windows_map.get(cpids[ppid])
-            parent.minimized = True
-            window.parent = parent
-            return
-        ppid = psutil.Process(ppid).ppid()
 
 @hook.subscribe.client_killed
 def _unswallow(window):
@@ -128,9 +110,9 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
 ## GROUPS
 
 groups = []
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["1", "2", "3", "4", "5", "6", "7", "8","9", "0",]
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall","monadtall","monadtall",]
+group_names = ["1", "2", "3", "4", "5",]
+group_labels = ["1", "2", "3", "4", "5",]
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
 
 for i in range(len(group_names)):
     groups.append(
@@ -153,9 +135,9 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":4,
+    return {"margin": 4,
             "border_width":0,
-            "border_focus": "#cc241d",
+            "border_focus": "#069",
             "border_normal": "#37383b"
             }
 
@@ -184,14 +166,6 @@ def init_colors():
 
 colors = init_colors()
 
-##POWERLINE
-powerline = {
-    "decorations": [
-        PowerLineDecoration(
-            path='arrow_right'
-        )
-    ]
-}
 
 # WIDGETS FOR THE BAR
 
@@ -214,52 +188,54 @@ def init_widgets_list():
                         padding_y = 0,
                         padding_x = 10,
                         borderwidth = 1,
-                        active = "#ba4100",
+                        active = "#069",
                         inactive = "4D5768",
                         rounded = False,
                         highlight_color = "00AFC2",
                         highlight_method = "block",
                         urgent_alert_method='block',
                         urgent_border=colors[1],
-                        this_current_screen_border = "#919191",
+                        this_current_screen_border = "#909090",
                         foreground = colors[2],
-                        background = "#101010",
-                        ),
-               widget.WindowName(font="Noto Sans",
+                        background = "#000000",
+                       ),
+               widget.WindowName(
+                       font="Ubuntu Mono Nerd Font",
                         fontsize = 0,
                         foreground = colors[5],
-                        background = "#101010",
+                        background = "#000000",
                         ),
                widget.Clock(
                        foreground = colors[2],
-                        font="UbuntuMono Nerd Font",
-                        background = "#101010",
+                       font="Ubuntu Mono Nerd Font",
+                        background = "#000000",
                         fontsize = 16,
                         format='%d-%m %a %I:%M %p' + ' | ',
                         ),
                widget.Memory(
                        foreground = colors[2],
-                       background = "#101010",
-                       font="UbuntuMono Nerd Font",
+                       background = "#000000",
+                       font="Ubuntu Mono Nerd Font",
                        fontsize = 16,
                        fmt = 'RAM: {}' + ' | ',
                        padding = 5,
                        ),
                widget.CPU(
                        foreground = colors[2],
-                       background = "#101010",
-                       font = "UbuntuMono Nerd Font",
+                       background = "#000000",
+                       font="Ubuntu Mono Nerd Font",
                        fontsize = 16,
                        fmt = '{}',
                        padding = 5,
                        ),
                widget.Systray(
-                        background="#101010",
+                        background="#000000",
                         icon_size= 16,
                         padding = 14,
                         ),
               ]
     return widgets_list
+
 
 widgets_list = init_widgets_list()
 
@@ -275,7 +251,7 @@ widgets_screen1 = init_widgets_screen1()
 def init_screens():
     return [Screen(
         top=bar.Bar(
-            widgets=init_widgets_screen1(), size=18, opacity=1))]
+            widgets=init_widgets_screen1(), size=16, opacity=1))]
 screens = init_screens()
 
 

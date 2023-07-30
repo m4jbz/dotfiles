@@ -1,52 +1,35 @@
-#################################################################
-                        # KEY BINDINGS
-#################################################################
 
-#################################################################
-# SUPER + FUNCTION KEYS
-#################################################################
+##################################################################################################################################################################################################
 
-#Rofi (all)
-super + F12
-    rofi -show run
+#Suspend system
+super + shift + F9
+	systemctl suspend 
+	
+#Shutdown system
+super + shift + F10
+	shutdown now
 
+#Reboot system
+super + shift + F8
+	reboot
 
-#Keyboards
-super + shift + k
-	setxkbmap latam
+#Xkill
+super + shift + Escape
+    xkill
 
-super + shift + l
-	setxkbmap us
-
-
+##################################################################################################################################################################################################
 
 #Bookmarks
 super + F11
 	xdotool type $(grep -v '^#' ~/.local/share/bookmarks/snippets | dmenu -i -l 50 | cut -d' ' -f1)
 
-#################################################################
-# SUPER + ... KEYS
-#################################################################
-
 #MuPDF
 super + p  
 	mupdf Documents/LaTeX/algebra.pdf
 
-#Logout
-super + x
-    archlinux-logout
-
-#Ranger (Explorador de archivos en terminal)
-super + y
-    alacritty -e ranger
-
 #Browser
 super + w
     firefox
-
-#Browser (qutebrowser)
-super + e
-    qutebrowser
 
 #Appearance
 super + c
@@ -60,63 +43,27 @@ super + r
 super + t
     torbrowser-launcher
 
-#Visual Studio Code
-super + v
-    vscodium
-
 #Terminal
 super + Return
     alacritty
-
-#Terminal#2
-#super + shift + Return
-#   kitty
 
 #OBS
 super + i
     obs
     
-#Xkill
-super + Escape
-    xkill
-
-
-#LibreOffice
-super + o
-    onlyoffice-desktopeditors
-
-#################################################################
-# SUPER + SHIFT KEYS
-#################################################################
-
 #File-Manager
 super + shift + Return
-	pcmanfm
+	alacritty -e ranger
 
+##################################################################################################################################################################################################
 
 #Reload sxhkd:
 super + shift + s
 	pkill -USR1 -x sxhkd
 
-#xfce4-settings-manager
-ctrl + alt + m
-    xfce4-settings-manager
-
-#################################################################
-#     SCREENSHOTS
-#################################################################
-
-#Scrot
-Print
-    scrot 'Screenshot-%Y-%m-%d.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
-
-#screeenshooter
+#Screeenshooter
 ctrl + Print
      xfce4-screenshooter
-
-#################################################################
-#     MULTIMEDIA KEYS
-#################################################################
 
 #Raises volume
 XF86AudioRaiseVolume

@@ -13,21 +13,19 @@ if [ $keybLayout = "be" ]; then
   cp $HOME/.config/qtile/config-azerty.py $HOME/.config/qtile/config.py
 fi
 
+
 ##Wallaper
-feh --bg-fill Pictures/017.jpg
+feh --bg-fill Pictures/Wallpapers/003.png
 
 #Los key bindings
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
 #starting utility applications at boot time
-#run lxappearance
 run nm-applet &
 run volumeicon &
 run cbatticon &
-run blueman-applet &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &
 picom --config $HOME/.config/qtile/scripts/picom.conf &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
