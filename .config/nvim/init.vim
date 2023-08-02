@@ -10,14 +10,18 @@ set encoding=UTF-8
 
 call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'xiyaowong/transparent.nvim'
 	Plug 'preservim/nerdtree'	
 	Plug 'itchyny/lightline.vim'
-	Plug 'lervag/vimtex'
-	Plug 'xiyaowong/transparent.nvim'
 	Plug 'morhetz/gruvbox'
+	Plug 'lervag/vimtex'
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
-colorscheme base16-gruvbox-dark-hard
+colorscheme gruvbox
+
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
 
 "" Plugins configuration
 
@@ -26,10 +30,13 @@ let g:lightline = {
       \ }
 
 
+vnoremap <C-c> "+y
+map <C-p> "+p
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-q> :q<CR>
+nnoremap <C-Y> :VimtexCompile <CR>
 nnoremap zz :update<cr>
 nnoremap mm :set relativenumber<CR>
 inoremap " ""<left>
@@ -47,6 +54,14 @@ noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 
+au VimLeave * set guicursor=a:ver100
+
+
+
+
+
+
+
 
 " This is necessary for VimTeX to load properly. The "indent" is optional.
 " Note that most plugin managers will do this automatically.
@@ -59,7 +74,7 @@ syntax enable
 
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_method = 'mupdf'
 
 " Or with a generic interface:
 let g:vimtex_view_general_viewer = 'okular'
@@ -76,7 +91,17 @@ let g:vimtex_compiler_method = 'latexrun'
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
 
-autocmd BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw!
+
+
+
+
+
+
+
+
+
+
+
 
 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
