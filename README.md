@@ -1,2 +1,3 @@
-# dotfiles 
-yeah that's it
+# dotfiles
+
+My repository of my dotfiles.

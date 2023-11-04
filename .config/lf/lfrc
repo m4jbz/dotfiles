@@ -1,0 +1,29 @@
+set info size
+set ratios 1:2:3
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/preview
+set shell zsh
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+map as unarchive
+map gm cd /media/
+map gh cd ~/
+map gp cd ~/Media/Videos/lol/
+map gt cd ~/Documents/TEC
+map <enter> open
+map gn shell
+map gd delete
+map gx cut
+map gl cd ~/Documents/LaTeX/
+map gj cd ~/Documents/Java/
+map gw cd ~/Documents/Marco-s-Webpage/

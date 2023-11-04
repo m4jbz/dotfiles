@@ -20,7 +20,8 @@ bindkey "^[[1;5D"   backward-word
 bindkey "^[[M"		kill-word
 
 export SUDO_EDITOR=/usr/bin/nvim
-export EDITOR=/usr/bin/nvim
+export EDITOR=vim
+export VISUAL=vim
 
 # alias zshconfig="mate ~/.zshrc"
 alias catn="bat"
@@ -30,7 +31,9 @@ alias p="sudo pacman"
 alias ls="lsd"
 alias ll="lsd -alh"
 alias mpv43="mpv --video-aspect-override=4:3"
+alias intellij="flatpak run com.jetbrains.IntelliJ-IDEA-Community"
 
+# Plugins
 source /usr/share/zsh/plugins/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 

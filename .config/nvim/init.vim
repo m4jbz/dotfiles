@@ -1,24 +1,31 @@
 set number
 set relativenumber
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
-set softtabstop=4
+set softtabstop=2
 set mouse=a
 set encoding=UTF-8
+
+let mapleader = "\<Space>"
 
 call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'xiyaowong/transparent.nvim'
 	Plug 'preservim/nerdtree'	
+	Plug 'folke/tokyonight.nvim'
 	Plug 'itchyny/lightline.vim'
 	Plug 'morhetz/gruvbox'
 	Plug 'lervag/vimtex'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'ptzz/lf.vim'
+	Plug 'vimwiki/vimwiki'
+	Plug 'voldikss/vim-floaterm'
+	Plug 'rebelot/kanagawa.nvim'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme tokyonight-night 
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -29,16 +36,25 @@ let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ }
 
+let java_highlight_functions = 1
+let java_highlight_all = 1
+" If you are trying this at runtime, you need to reload the syntax file
+set filetype=java
+
+" Some more highlights, in addition to those suggested by cmcginty
+highlight link javaScopeDecl Statement
+highlight link javaType Type
+highlight link javaDocTags PreProc
+
 
 vnoremap <C-c> "+y
 map <C-p> "+p
-nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
+nnoremap ff :LfNewTab <CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-q> :q<CR>
-nnoremap <C-Y> :VimtexCompile <CR>
+nnoremap ty :VimtexCompile <CR>
 nnoremap zz :update<cr>
-nnoremap mm :set relativenumber<CR>
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
@@ -46,20 +62,41 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-nnoremap <C-right> :tabnext <CR>
-nnoremap <C-left> :tabprevious <CR>
+nnoremap <C-l> :tabnext <CR>
+nnoremap <C-h> :tabprevious <CR>
 nnoremap <C-w> :vsplit <CR>
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
+noremap <C-left> <C-W>h
+noremap <C-right> <C-W>l
+
+autocmd FileType tex inoremap ,sec \section{}
+autocmd FileType tex inoremap ,tbf \textbf{}
+autocmd FileType tex inoremap ,tsc \textsc{}
+autocmd FileType tex inoremap ,tit \textit{}
+autocmd FileType tex inoremap ,toc \tableofcontents
+autocmd FileType tex inoremap ,tpg \begin{titlepage}<Enter><Enter>\end{titlepage}<Enter><Enter><Esc>3kA<Space>
+autocmd FileType tex inoremap ,box \begin{tcolorbox}<Enter><Enter>\end{tcolorbox}<Enter><Enter><Esc>3kA<Space>
+autocmd FileType tex inoremap ,at \documentclass[a4paper, 12pt]{article}<Enter><Enter>
+autocmd FileType tex inoremap ,be \documentclass[aspectratio=169, 10pt]{beamer}<Enter><Enter>
+autocmd FileType tex inoremap ,bmm \usetheme{Madrid}<Enter>\usecolortheme{dove}<Enter>
+autocmd FileType tex inoremap ,ssec \subsection{}
+autocmd FileType tex inoremap ,img \includegraphics[width=0.5\textwidth]{}
+autocmd FileType tex inoremap ,pk \usepackage{}
+
+autocmd FileType tex inoremap ,fal \usepackage[utf8]{inputenc}<Enter>\usepackage[T1]{fontenc}<Enter>\usepackage[spanish]{babel}<Enter>\usepackage[margin=2cm, top=2cm, bottom=1.5cm, includefoot]{geometry}<Enter>\usepackage{graphicx}<Enter>\usepackage{fancyhdr}<Enter>\usepackage{xcolor}<Enter>\usepackage{amsmath}<Enter>\usepackage{amssymb}<Enter>\usepackage{pdflscape}<Enter>\usepackage{hyperref}<Enter>\usepackage{lipsum}<Enter>\usepackage{parskip}<Enter><Enter>
+
+autocmd FileType tex inoremap ,fbm \usepackage[utf8]{inputenc}<Enter>\usepackage[spanish]{babel}<Enter>\usepackage{graphicx}<Enter>\usepackage{fancyhdr}<Enter>\usepackage{xcolor}<Enter>\usepackage{amsmath}<Enter>\usepackage{amssymb}<Enter>\usepackage{pdflscape}<Enter>\usepackage{hyperref}<Enter>\usepackage[figurename=Ejemplo]{caption}<Enter>\usepackage{lipsum}<Enter>\usepackage{parskip}<Enter><Enter>
+
+autocmd FileType tex inoremap ,ol \begin{enumerate}<Enter><Enter>\end{enumerate}<Enter><Enter><Esc>3kA\item<Space>
+autocmd FileType tex inoremap ,il \begin{itemize}<Enter><Enter>\end{itemize}<Enter><Enter><Esc>3kA\item<Space>
+autocmd FileType tex inoremap ,bd \begin{document}<Enter><Enter>\end{document}<Enter><Enter><Esc>3kA<Tab>
+autocmd FileType tex inoremap ,bf \begin{frame}<Enter><Enter>\end{frame}<Enter><Enter><Esc>3kA<Tab>
+autocmd FileType tex inoremap ,bc \begin{center}<Enter><Enter>\end{center}<Enter><Enter><Esc>3kA<Tab>
 
 au VimLeave * set guicursor=a:ver100
 
-
-
-
-
+"--------------------------------------------------------------------------------------------"
 
 
 
@@ -74,7 +111,7 @@ syntax enable
 
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
-let g:vimtex_view_method = 'mupdf'
+let g:vimtex_view_method = 'zathura'
 
 " Or with a generic interface:
 let g:vimtex_view_general_viewer = 'okular'
@@ -90,6 +127,12 @@ let g:vimtex_compiler_method = 'latexrun'
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
+
+
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 
 
