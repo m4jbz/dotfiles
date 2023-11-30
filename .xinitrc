@@ -1,10 +1,11 @@
 while true; do
-	/bin/sh ~/.local/suckless/dwm/autostart.sh &
-	/bin/sh /opt/scripts/battery-status.sh &
+	/bin/sh ~/.config/dwm/autostart.sh &
+	/bin/sh ~/.local/scripts/battery-status.sh &
     # Log stderror to a file
     dwm 2> ~/.dwm.log
 done
 
+pulseaudio --start
 exec dwm
-exec sistatus 
+exec slstatus 
 xrandr -s 1366x768
