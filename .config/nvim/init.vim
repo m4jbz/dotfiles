@@ -12,20 +12,14 @@ let mapleader = "\<Space>"
 
 call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'xiyaowong/transparent.nvim'
 	Plug 'preservim/nerdtree'	
-	Plug 'folke/tokyonight.nvim'
 	Plug 'itchyny/lightline.vim'
 	Plug 'morhetz/gruvbox'
 	Plug 'lervag/vimtex'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-	Plug 'ptzz/lf.vim'
-	Plug 'vimwiki/vimwiki'
-	Plug 'voldikss/vim-floaterm'
-	Plug 'rebelot/kanagawa.nvim'
 call plug#end()
 
-colorscheme tokyonight-night 
+colorscheme gruvbox
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -60,8 +54,6 @@ inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
 nnoremap <C-l> :tabnext <CR>
 nnoremap <C-h> :tabprevious <CR>
 nnoremap <C-w> :vsplit <CR>
@@ -69,6 +61,10 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-left> <C-W>h
 noremap <C-right> <C-W>l
+
+autocmd FileType java inoremap ,sout System.out.println();
+autocmd FileType java inoremap ,for for(int i = 0; i < range; i++) {<Enter><Enter>}
+autocmd FileType java inoremap ,java import java.util.Scanner;<Enter><Enter>public class nameOfClass {<Enter><Enter><Space>public static void main(String[] args) {<Enter><Enter><Space>Scanner sc = new Scanner(System.in);<Enter><Enter>}<Enter>}
 
 autocmd FileType tex inoremap ,sec \section{}
 autocmd FileType tex inoremap ,tbf \textbf{}
