@@ -1,4 +1,6 @@
 #!/bin/bash
+# This script only needs paplay to be installed.
+
 while true
 do
   battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`

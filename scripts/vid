@@ -1,0 +1,6 @@
+#!/bin/sh
+
+algo=$(xsel --clipboard)
+video=$(echo $algo| dmenu -i -p "URL:")
+
+[ -z "$video" ] || mpv $video

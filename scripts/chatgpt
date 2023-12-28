@@ -1,0 +1,7 @@
+#!/bin/bash
+# This script requires tgpt from the AUR
+
+prompt=$(echo | dmenu -i -p "ChatGPT prompt:")
+
+[ -z "$prompt"] || st -e sh -c "tgpt \"$prompt\"; read -p \"Presiona Enter para salir\""
+

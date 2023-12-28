@@ -1,0 +1,16 @@
+#!/bin/sh
+
+archivo="/home/zero/.local/videos/urls.txt"
+
+playlist=$(xsel --clipboard)
+music=$(echo $playlist | dmenu -i -p "Youtube Playlist URL:")
+
+yt-dlp --flat-playlist -q --get-id "$music" | awk '{print "https://www.youtube.com/watch?v="$0}' > $archivo
+
+while IFS= read -r linea || [ -n "$linea" ]; do
+		yt-dlp -f 'ba' -x --audio-format mp3 --audio-quality 320K "$linea" -o '~/Media/downloads/%(title)s.%(ext)s'
+    notify-send "Video downloaded" 
+done < "$archivo"
+
+notify-send "Playlist downloaded"
+echo -n > $archivo
