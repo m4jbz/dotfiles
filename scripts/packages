@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Script para hacer packages de java 
+
+read -p "Package name: " name 
+
+firstUp=$(tr '[:lower:]' '[:upper:]' <<< "${name:0:1}")
+rest="${name:1}"
+
+rname=${firstUp}${rest}
+
+[ -z "$name" ] || {
+	mkdir $rname && cd $rname && mkdir bin && mkdir src && mkdir bin/$name && mkdir src/$name && touch src/$name/Main.java
+}

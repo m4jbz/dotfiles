@@ -1,0 +1,47 @@
+#!/bin/sh 
+
+# Pomodoro timer
+
+printf "Choose an option\\n1) 50min-5min  2) 25min-5min\\n"
+read option
+
+[ "$option" -eq 1 ] && pwork=3000 ; pbreak=300
+[ "$option" -eq 2 ] && pwork=1500 ; pbreak=300
+[ "$option" -ne 1 ] && [ "$option" -ne 2 ] && echo "You're stupid or something?"
+
+printf "Are you ready?\\nY) Yes  N) No: "
+read again
+
+[ "$again" == "y" ] && { 
+
+	# Ciclo de 4 Pomodoros
+	contador=0
+	while [ $contador -lt 2 ]
+	do
+		# Pomodoro de trabajo
+		start="$(($(date +%s) + $pwork))"
+		while [ "$start" -ge `date +%s` ]; do
+				time="$(( $start - `date +%s` ))"
+				printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+		done
+
+		# Noti del Pomodoro
+		notify-send -t 5000 -u critical "The break began" ; paplay ~/Media/downloads/sound.wav
+
+		# Pomodoro de descanso
+		start2="$(($(date +%s) + $pbreak))"
+		while [ "$start2" -ge `date +%s` ]; do
+				time="$(( $start2 - `date +%s` ))"
+				printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+		done
+		
+		((contador++))
+
+		[ $contador -lt 2 ] && notify-send -t 5000 -u critical "The work began" && paplay ~/Media/downloads/sound.wav
+
+	done
+
+	notify-send -t 5000 -u critical "The Pomodoro is done." && paplay ~/Media/downloads/sound.wav
+}
+
+[ "$again" == "n" ] && echo "Goodbye."

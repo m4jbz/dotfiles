@@ -1,5 +1,4 @@
 #!/bin/bash
-# This script requires tgpt from the AUR
 
 prompt=$(echo | dmenu -i -p "ChatGPT prompt:")
 
