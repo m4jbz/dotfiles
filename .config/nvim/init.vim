@@ -26,7 +26,7 @@ source ~/.config/nvim/mappings/mappings.vim
 "" Colorscheme 
 set termguicolors
 set background=dark
-colorscheme aurora
+colorscheme vscode
 "" -----------------
 
 "" Java highlighting
@@ -35,4 +35,12 @@ let java_highlight_all = 1
 highlight link javaScopeDecl Statement
 highlight link javaType Type
 highlight link javaDocTags PreProc
+"" -------------------------------
+
+"" C highlighting
+let c_highlight_functions = 1
+let c_highlight_all = 1
+highlight link cStatement Statement
+highlight link cType Type
+highlight link cPreProc PreProc
 "" -------------------------------

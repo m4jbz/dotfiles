@@ -2,6 +2,8 @@
 
 call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'Mofiqul/vscode.nvim'
+	Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'preservim/nerdtree'	
 	Plug 'itchyny/lightline.vim'
 	Plug 'vimwiki/vimwiki'
