@@ -1,6 +1,0 @@
-#!/bin/bash
-
-prompt=$(echo | dmenu -i -p "ChatGPT prompt:")
-
-[ -z "$prompt"] || st -e sh -c "tgpt \"$prompt\"; read -p \"Presiona Enter para salir\""
-
