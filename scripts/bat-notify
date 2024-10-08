@@ -1,0 +1,9 @@
+#!/bin/sh 
+
+capacity="$(acpi -b | awk '{print $4}' | tr -d '%,')"
+
+if [ "$capacity" -lt 20 ]; then 
+	notify-send -t 10000 -u critical "Battery low!, please connect the charger" && sleep 60
+elif [ "$capacity" -gt 90 ]; then
+	notify-send -t 10000 -u normal "Please disconnect the charger" && sleep 60
+fi

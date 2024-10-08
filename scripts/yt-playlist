@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# archivo para dividir la playlist en varios videos.
+archivo="/home/marco/.local/videos/urls.txt"
+
+# el portapapeles del sistema.
+clipboard=$(xsel --clipboard)
+
+# funcion para preguntar la opcion
+askChoice() { 
+	choice=$(printf "Music Albums\\nDownload Video\\nDownload Music\\nStream Video\\nStream Music" | dmenu -i -p "Select option:")
+	case "$choice" in
+		"Music Albums") download_album;;
+		"Download Video") download_video;;
+		"Download Music") download_music;;
+		"Stream Video") stream_video;;
+		"Stream Music") stream_music;;
+	esac
+}
+
+# funcion para dividir la playlist.
+download_album() {
+	pyl=$(echo $clipboard | dmenu -i -p "Music Album URL (from a youtube playlist):")
+	[ -z "$pyl" ] || yt-dlp --flat-playlist -q --get-id "$pyl" | awk '{print "https://www.youtube.com/watch?v="$0}' > $archivo
+
+	while IFS= read -r linea || [ -n "$linea" ]; do
+			yt-dlp -f 'ba' -x --audio-format mp3 --audio-quality 320K "$linea" -o '~/media/downloads/%(title)s.%(ext)s'
+			notify-send "Video downloaded" 
+	done < "$archivo"
+
+	[ -z "$pyl" ] || notify-send "Playlist downloaded"
+	echo -n > $archivo
+}
+
+# funcion para un solo video.
+download_video() {
+	vid=$(echo $clipboard | dmenu -i -p "Video URL:")
+	[ -z "$vid" ] || yt-dlp -f 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720]/best' "$vid" -o '~/Media/downloads/%(title)s.%(ext)s' && notify-send "Video downloaded"
+}
+
+# funcion para una sola cancion
+download_music() {
+	song=$(echo $clipboard | dmenu -i -p "Song URL:")
+	[ -z "$song" ] || yt-dlp -f 'ba' -x --audio-format mp3 --audio-quality 320K "$song" -o '~/Media/downloads/%(title)s.%(ext)s' && notify-send "Song downloaded"
+}
+
+stream_video() {
+	vid=$(echo $clipboard | dmenu -i -p "Video URL:")
+	[ -z "$vid" ] || notify-send -t 6000 "Loading video..." ; sh -c "st -e mpv '$vid'"
+}
+
+stream_music() {
+	song=$(echo $clipboard | dmenu -i -p "Song URL:")
+	[ -z "$song" ] || notify-send -t 6000 "Loading song..." ; sh -c "st -e mpv --no-video '$song'"
+}
+
+
+askChoice
+

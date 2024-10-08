@@ -1,0 +1,3 @@
+#!/bin/sh
+
+printf "👾" ; lscpu | grep scaling | awk '{print $4}'
