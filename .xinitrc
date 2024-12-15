@@ -1,10 +1,5 @@
-setbg &
-picom &
 remapd &
+setbg &
 dunst &
-dwmblocks &
-xfce4-power-manager &
-bat-notify &
-wifi-toggle 0 &
-exec dwm
+exec i3
 xrandr -s 1366x768
