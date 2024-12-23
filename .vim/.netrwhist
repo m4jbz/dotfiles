@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/marco/Dev/C'
+let g:netrw_dirhist_6='/home/marco/.config/zathura'
+let g:netrw_dirhist_5='/home/marco'
 let g:netrw_dirhist_4='/home/marco/.config/alacritty'
 let g:netrw_dirhist_3='/home/marco/Dev/C'
 let g:netrw_dirhist_2='/home/marco/Dev/Java/Estructura de Datos/Unidad III/Pilas'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_1='/home/marco/Arduino/practica_1'
 let g:netrw_dirhist_0='/home/marco/Dev/C/hollow_purple_animation'
 let g:netrw_dirhist_9='/home/marco/Documents/English/Level B1+'
 let g:netrw_dirhist_8='/home/marco/Git/st'
-let g:netrw_dirhist_7='/home/marco/Git/voidfiles/.config/nvim/mappings'
-let g:netrw_dirhist_6='/home/marco/.config/tmux'
-let g:netrw_dirhist_5='/home/marco/Dev/C/snake'
