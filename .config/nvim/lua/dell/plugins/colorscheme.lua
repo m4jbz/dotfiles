@@ -1,4 +1,20 @@
-return { 
+return {
+    {
+    "alljokecake/naysayer-theme.nvim",
+    name = "naysayer", 
+	config = function()
+        require('naysayer').setup({
+            variant = 'main',
+            dark_variant = 'main',
+            bold_vert_split = false,
+            dim_nc_background = false,
+            disable_background = true,
+            disable_float_background = true,
+            disable_italics = true,
+        })
+    end
+    },
+    {
 	"rose-pine/neovim", 
 	name = "rose-pine",
 	config = function()
@@ -18,6 +34,6 @@ return {
 				transparency = true,
 			},
 		})
-		vim.cmd("colorscheme rose-pine")
-	end
+    end
+    }
 }

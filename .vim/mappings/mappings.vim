@@ -2,8 +2,8 @@
 
 "" Normal keymaps 
 vnoremap <C-c> "+y
-map <C-p> "+p
-nnoremap <C-n> :Vex <CR>
+nnoremap <C-p> "+p
+nnoremap <C-n> :Ex <CR>
 nnoremap <C-q> :q<CR>
 nnoremap ty :VimtexCompile <CR>
 nnoremap tv :!bash voice <CR>
