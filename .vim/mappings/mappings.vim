@@ -6,7 +6,6 @@ nnoremap <C-p> "+p
 nnoremap <C-n> :Ex <CR>
 nnoremap <C-q> :q<CR>
 nnoremap ty :VimtexCompile <CR>
-nnoremap tv :!bash voice <CR>
 nnoremap zz :update<cr>
 nnoremap <C-b> :!touch build.sh && chmod +x build.sh && echo "\#\!/bin/sh\n\nset -xe\n\n" > build.sh<CR>
 nnoremap <C-f> :Files <CR>
@@ -25,7 +24,6 @@ nnoremap <s-M-l> :vertical resize +5 <CR>
 nnoremap <s-M-h> :vertical resize -5 <CR>
 nnoremap <s-M-k> :resize +1 <CR>
 nnoremap <s-M-j> :resize -1 <CR>
-nmap <s-j>  <c-w>j
 nmap <s-k>  <c-w>k
 nmap <s-h>  <c-w>h
 nmap <s-l> <c-w>l
@@ -39,17 +37,11 @@ nnoremap <leader>u :s/\/\/ //<CR>:noh<CR>
 vnoremap <leader>u :s/\/\/ //<CR>:noh<CR>
 ""-------------------------------------------
 
-"" Git keymaps
-nnoremap ma :Git add 
-nnoremap mp :Git push origin main <CR> 
-nnoremap mc :Git commit <CR>
-nnoremap ml :Git log <CR>
-nnoremap md :Git diff <CR>
-""-------------------------------------------
+nnoremap <leader>t :edit 
 
 "" C/C++ keymaps 
 autocmd FileType c inoremap ,c #include <stdio.h><Enter>#include <stdlib.h><Enter>#include <stdbool.h><Enter>#include <math.h><Enter><Enter>int main()<Enter>{<Enter><Enter>return 0;<Enter>}
-autocmd FileType c inoremap ,for for (int i = 0; i < 1; ++i)<Enter>{<Enter>}
+autocmd FileType c inoremap ,for for (int i = 0; i < 1; ++i) {<Enter>}
 autocmd FileType cpp inoremap ,c #include <iostream><Enter>#include <cstdio><Enter><Enter>int main()<Enter>{<Enter><Enter>return 0;<Enter>}
 autocmd FileType cpp inoremap ,for for (int i = 0; i < 1; ++i)<Enter>{<Enter>}
 ""-------------------------------------------

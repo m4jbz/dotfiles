@@ -176,18 +176,19 @@ bindkey -M visual '^[[P' vi-delete
 
 alias e="vim"
 alias n="nvim"
-alias p="sudo apt"
+alias p="sudo pacman"
 alias mkd="mkdir -v"
 alias ipa="ip -color a"
 alias z="zathura"
 alias ls="ls --color"
 alias l="ls --color -alh"
 alias reboot="systemctl reboot"
-alias shutdown="systemctl poweroff"
 
 # Load syntax highlighting; should be last.
 # source /usr/share/zsh/plugins/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 export SUDO_EDITOR=vim
-export PATH="/home/dell/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/dell/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-eval $(dbus-launch)
+
+
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+	  exec startx
+fi

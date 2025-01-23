@@ -36,10 +36,10 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 bindsym XF86XK_MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86XK_MonBrightnessDown exec brightnessctl set 10%-
@@ -67,9 +67,9 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 
 # change focus
 bindsym $mod+j focus left
-bindsym $mod+k focus down
+bindsym $mod+k focus right
+bindsym $mod+h focus down
 bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -90,7 +90,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -100,10 +99,12 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+w exec firefox
-bindsym $mod+r exec st -e lf
+bindsym $mod+r exec --no-startup-id env EDITOR=vim st -e lfub
 bindsym $mod+F7 exec systemctl suspend
 bindsym $mod+F11 exec xdotool type $(grep -v '^#' ~/.local/share/bookmarks/snippets | dmenu -i -l 15 | cut -d' ' -f1)
 bindsym $mod+s layout tabbed
+bindsym $mod+Shift+n exec redshift -P -O 6500
+bindsym $mod+n exec redshift -P -O 3600
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating

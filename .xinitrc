@@ -1,5 +1,6 @@
 remapd &
 setbg &
 dunst &
+xfce4-power-manager &
+xrdb -merge ~/.Xresources &
 exec i3
-xrandr -s 1366x768
