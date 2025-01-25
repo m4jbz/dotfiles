@@ -88,7 +88,7 @@ endfunction
 " Vim Highlighting: (see :help highlight-groups)"
 " ----------------------------------------------------------------------------
 
-call s:HL('Normal', s:accent_6, '#072626', s:none)
+call s:HL('Normal', s:accent_6, '#062329', s:none)
 
 call s:HL('ColorColumn', s:blue, s:accent_3, s:none)
 " call s:HL('Conceal', ...)

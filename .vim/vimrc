@@ -17,8 +17,8 @@ let g:netrw_winsize = 15
 let mapleader = " " " map leader to Space
 
 set background=dark
-colorscheme base16-atelier-forest
-" colorscheme handmade-hero
+" colorscheme base16-atelier-forest
+colorscheme tsoding
 set termguicolors
 
 set shell=/bin/zsh
