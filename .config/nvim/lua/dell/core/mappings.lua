@@ -12,6 +12,8 @@ vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', '"+p', { noremap = true, silent = true })
 
+vim.keymap.set('n', 'zz', ':update<CR>')
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
