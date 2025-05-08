@@ -18,7 +18,7 @@ let mapleader = " " " map leader to Space
 
 set background=dark
 " colorscheme base16-atelier-forest
-colorscheme tsoding
+colorscheme solarized
 set termguicolors
 
 set shell=/bin/zsh

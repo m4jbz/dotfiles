@@ -5,13 +5,16 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', { noremap = true, silent = tr
 vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-b>', ':!touch build.sh && chmod +x build.sh<CR>')
-vim.keymap.set('n', 'ff', ':!./build.sh<CR>')
+vim.keymap.set('n', 'ff', ':!make<CR>')
+vim.keymap.set('n', 'mm', ':!./build.sh<CR>')
+vim.keymap.set('n', 'mx', ':%!xxd<CR>')
 vim.api.nvim_set_keymap('i', '(', '()<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', '"+p', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'zz', ':update<CR>')
 
 local builtin = require('telescope.builtin')
@@ -22,6 +25,9 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<C-n>', ':Ex<CR>')
 vim.keymap.set('n', '<leader>t', ':edit ')
 vim.keymap.set('n', '<leader>b', ':VimwikiGoBackLink<CR>')
+
+vim.api.nvim_buf_set_keymap(0, 'i', ',main', '#include <stdio.h><CR><CR>int main(void)<CR>{<CR>return 0;<CR>}', { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, 'i', ',for', 'for (int i = 0; i < n; i++) {<CR>}', { noremap = true, silent = true })
 
 vim.keymap.set('n', 'ty', ':VimtexCompile <CR>')
 

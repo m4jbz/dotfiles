@@ -1,10 +1,10 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.opt.expandtab = true
 vim.opt.tabstop = 4

@@ -120,7 +120,7 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-export SUDOEDIT=vim
+export SUDOEDIT=nvim
 
 # vi mode
 bindkey -v
@@ -176,19 +176,33 @@ bindkey -M visual '^[[P' vi-delete
 
 alias e="vim"
 alias n="nvim"
-alias p="sudo pacman"
+alias p="sudo apt"
 alias mkd="mkdir -v"
 alias ipa="ip -color a"
 alias z="zathura"
 alias ls="ls --color"
 alias l="ls --color -alh"
 alias reboot="systemctl reboot"
+alias media="sudo mount /dev/nvme0n1p2 /mnt/media && sudo chmod 777 /mnt/media"
 
 # Load syntax highlighting; should be last.
 # source /usr/share/zsh/plugins/fast-syntax-highlighting.plugin.zsh 2>/dev/null
-export SUDO_EDITOR=vim
+export SUDO_EDITOR=nvim
 
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
 	  exec startx
 fi
+
+export PATH="$PATH:/sbin"
+export $(dbus-launch)
+export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
+export JAVAFX_HOME="/home/marco/Downloads/javafx-sdk-17.0.14"
+
+
+# Created by `pipx` on 2025-05-02 03:00:44
+export PATH="$PATH:/home/marco/.local/bin"
+export MUSIC_DIR="/mnt/media/Music"
+
+alias music='tmux new-session -s $$ "tmux source-file ~/.config/ncmpcpp/tsession"'
+_trap_exit() { tmux kill-session -t $$; }
